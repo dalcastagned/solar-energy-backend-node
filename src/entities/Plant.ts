@@ -6,7 +6,7 @@ export class Plant {
   public model: string;
   public active: boolean;
 
-  constructor(props: Omit<Plant, 'id'>) {
+  constructor(props: Plant) {
     Object.assign(this, props);
   }
 }

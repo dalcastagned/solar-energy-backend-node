@@ -15,6 +15,6 @@ export class UpdatePlantUseCase {
       throw new Error('Plant not found');
     }
     Object.assign(plant, updatePlantDTO);
-    return this.plantRepository.update(id, plant);
+    return this.plantRepository.update(plant);
   }
 }

@@ -17,8 +17,8 @@ export class PlantRepository implements IPlantRepository {
     await PlantModel.findByIdAndRemove(id);
   }
 
-  async update(id: string, plant: Plant): Promise<Plant> {
-    const updatedPlant = await PlantModel.findByIdAndUpdate(id, plant);
+  async update(plant: Plant): Promise<Plant> {
+    const updatedPlant = await PlantModel.findByIdAndUpdate(plant._id, plant);
     return updatedPlant;
   }
 }

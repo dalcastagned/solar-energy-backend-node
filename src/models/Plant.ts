@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const plantSchema = new mongoose.Schema({
-  id: { type: String },
+  _id: { type: String, required: true },
   nickname: { type: String, required: true },
   place: { type: String, required: true },
   brand: { type: String, required: true },

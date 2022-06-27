@@ -1,6 +1,16 @@
-import mongoose, { Schema } from 'mongoose';
+import { model, Document, Schema, PaginateModel } from 'mongoose';
+import paginate from 'mongoose-paginate-v2';
 
-const plantSchema = new mongoose.Schema({
+export interface IPlantDocument extends Document {
+  _id: string;
+  nickname: string;
+  place: string;
+  brand: string;
+  model: string;
+  active: boolean;
+}
+
+const plantSchema = new Schema({
   _id: { type: String, required: true },
   nickname: { type: String, required: true },
   place: { type: String, required: true },
@@ -8,6 +18,8 @@ const plantSchema = new mongoose.Schema({
   model: { type: String, required: true },
   active: { type: Boolean, required: true },
 });
+
+plantSchema.plugin(paginate);
 
 plantSchema.set('toJSON', {
   virtuals: true,
@@ -19,6 +31,6 @@ plantSchema.set('toJSON', {
   },
 });
 
-const PlantModel = mongoose.model('PlantModel', plantSchema);
+const PlantModel = model<IPlantDocument, PaginateModel<IPlantDocument>>('Plant', plantSchema);
 
 export { PlantModel };

@@ -1,6 +1,7 @@
 import { IPlantRepository } from '../IPlantRepository';
 import { Plant } from '../../entities/Plant';
 import { PlantModel } from '../../models/Plant';
+import { GetAllPlantsDTO } from '../../useCases/GetAllPlants/GetAllPlantsDTO';
 
 export class PlantRepository implements IPlantRepository {
   async getById(id: string): Promise<Plant> {
@@ -20,5 +21,28 @@ export class PlantRepository implements IPlantRepository {
   async update(plant: Plant): Promise<Plant> {
     const updatedPlant = await PlantModel.findByIdAndUpdate(plant._id, plant);
     return updatedPlant;
+  }
+
+  async getAll(page: number, limit: number, filter: string): Promise<GetAllPlantsDTO> {
+    const options = {
+      page: page,
+      limit: limit,
+    };
+    var filterRegExp = new RegExp(filter, 'i');
+    const plants = await PlantModel.paginate(
+      {
+        $or: [
+          { nickname: { $regex: filterRegExp } },
+          { brand: { $regex: filterRegExp } },
+          { place: { $regex: filterRegExp } },
+          { model: { $regex: filterRegExp } },
+        ],
+      },
+      options,
+      function (_, result) {
+        return result;
+      },
+    );
+    return new GetAllPlantsDTO(plants.docs, plants.totalPages, plants.page);
   }
 }

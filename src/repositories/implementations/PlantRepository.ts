@@ -2,6 +2,7 @@ import { IPlantRepository } from '../IPlantRepository';
 import { Plant } from '../../entities/Plant';
 import { PlantModel } from '../../models/Plant';
 import { GetAllPlantsDTO } from '../../useCases/GetAllPlants/GetAllPlantsDTO';
+import { GetCountsDTO } from '../../useCases/GetCounts/GetCountsDTO';
 
 export class PlantRepository implements IPlantRepository {
   async getById(id: string): Promise<Plant> {
@@ -44,5 +45,11 @@ export class PlantRepository implements IPlantRepository {
       },
     );
     return new GetAllPlantsDTO(plants.docs, plants.totalPages, plants.page);
+  }
+
+  async getCounts(): Promise<GetCountsDTO> {
+    const activePlants = await PlantModel.countDocuments({ active: true });
+    const inactivePlants = await PlantModel.countDocuments({ active: false });
+    return new GetCountsDTO(activePlants, inactivePlants);
   }
 }

@@ -4,23 +4,27 @@ import { createPlantController } from '../useCases/CreatePlant';
 import { removePlantController } from '../useCases/RemovePlant';
 import { updatePlantController } from '../useCases/UpdatePlant';
 import { getAllPlantsController } from '../useCases/GetAllPlants';
+import { getCountsController } from '../useCases/GetCounts';
 
 const plantRoutes = express.Router();
 
 plantRoutes
-  .get('/plant', (request: Request, response: Response) =>
+  .get('/api/plant', (request: Request, response: Response) =>
     getAllPlantsController.handle(request, response),
   )
-  .get('/plant/:id', (request: Request, response: Response) =>
+  .get('/api/plant/counts', (request: Request, response: Response) =>
+    getCountsController.handle(request, response),
+  )
+  .get('/api/plant/:id', (request: Request, response: Response) =>
     getPlantController.handle(request, response),
   )
-  .post('/plant', (request: Request, response: Response) =>
+  .post('/api/plant', (request: Request, response: Response) =>
     createPlantController.handle(request, response),
   )
-  .delete('/plant/:id', (request: Request, response: Response) =>
+  .delete('/api/plant/:id', (request: Request, response: Response) =>
     removePlantController.handle(request, response),
   )
-  .put('/plant/:id', (request: Request, response: Response) =>
+  .put('/api/plant/:id', (request: Request, response: Response) =>
     updatePlantController.handle(request, response),
   );
 

@@ -35,4 +35,8 @@ export class GenerationRepository implements IGenerationRepository {
   async remove(id: string): Promise<void> {
     await GenerationModel.findByIdAndDelete(id);
   }
+
+  async update(generation: Generation): Promise<Generation> {
+    return GenerationModel.findByIdAndUpdate(generation._id, generation);
+  }
 }

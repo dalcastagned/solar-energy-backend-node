@@ -6,4 +6,5 @@ export interface IGenerationRepository {
   getAll(plantId: string, page: number, limit: number): Promise<GetAllGenerationsDTO>;
   getById(id: string): Promise<Generation>;
   remove(id: string): Promise<void>;
+  update(generation: Generation): Promise<Generation>;
 }

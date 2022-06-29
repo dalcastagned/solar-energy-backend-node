@@ -3,6 +3,7 @@ import { createGenerationController } from '../useCases/CreateGeneration';
 import { getAllGenerationsController } from '../useCases/GetAllGenerations';
 import { getGenerationController } from '../useCases/GetGenerationById';
 import { removeGenerationController } from '../useCases/RemoveGeneration';
+import { updateGenerationController } from '../useCases/UpdateGeneration';
 
 const generationRoutes = express.Router();
 
@@ -18,6 +19,9 @@ generationRoutes
   )
   .delete('/api/plant/:plantId/generation/:generationId', (request: Request, response: Response) =>
     removeGenerationController.handle(request, response),
+  )
+  .put('/api/plant/:plantId/generation/:generationId', (request: Request, response: Response) =>
+    updateGenerationController.handle(request, response),
   );
 
 export { generationRoutes };

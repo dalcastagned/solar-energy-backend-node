@@ -5,4 +5,5 @@ export interface IGenerationRepository {
   create(generation: Generation): Promise<Generation>;
   getAll(plantId: string, page: number, limit: number): Promise<GetAllGenerationsDTO>;
   getById(id: string): Promise<Generation>;
+  remove(id: string): Promise<void>;
 }

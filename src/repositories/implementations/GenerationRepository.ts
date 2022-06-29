@@ -31,4 +31,8 @@ export class GenerationRepository implements IGenerationRepository {
   async getById(id: string): Promise<Generation> {
     return GenerationModel.findById(id, '_id date generatePower');
   }
+
+  async remove(id: string): Promise<void> {
+    await GenerationModel.findByIdAndDelete(id);
+  }
 }

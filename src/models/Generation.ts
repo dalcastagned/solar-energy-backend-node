@@ -5,12 +5,14 @@ export interface IGenerationDocument extends Document {
   _id: string;
   date: Date;
   generatePower: number;
+  plantId: string;
 }
 
 const generationSchema = new Schema({
   _id: { type: String, required: true },
   date: { type: Date, required: true },
   generatePower: { type: Number, required: true },
+  plantId: { type: String, required: true },
 });
 
 generationSchema.plugin(paginate);

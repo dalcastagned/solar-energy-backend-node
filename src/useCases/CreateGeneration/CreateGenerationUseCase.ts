@@ -9,8 +9,11 @@ export class CreateGenerationUseCase {
     this.generationRepository = generationRepository;
   }
 
-  public async execute(createGenerationDTO: ICreateGenerationDTO): Promise<Generation> {
-    const generation = new Generation(createGenerationDTO);
+  public async execute(
+    createGenerationDTO: ICreateGenerationDTO,
+    plantId: string,
+  ): Promise<Generation> {
+    const generation = new Generation(createGenerationDTO, plantId);
     return this.generationRepository.create(generation);
   }
 }

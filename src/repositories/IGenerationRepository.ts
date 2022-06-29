@@ -1,5 +1,7 @@
 import { Generation } from '../entities/Generation';
+import { GetAllGenerationsDTO } from '../useCases/GetAllGenerations/GetAllGenerationsDTO';
 
 export interface IGenerationRepository {
   create(generation: Generation): Promise<Generation>;
+  getAll(plantId: string, page: number, limit: number): Promise<GetAllGenerationsDTO>;
 }

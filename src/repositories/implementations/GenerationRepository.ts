@@ -27,4 +27,8 @@ export class GenerationRepository implements IGenerationRepository {
     );
     return new GetAllGenerationsDTO(generations.docs, generations.totalPages, generations.page);
   }
+
+  async getById(id: string): Promise<Generation> {
+    return GenerationModel.findById(id, '_id date generatePower');
+  }
 }

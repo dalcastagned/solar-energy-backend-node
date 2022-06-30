@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://docker:mongopw@localhost:49153');
+mongoose.connect('mongodb://mongo-db:27017');
 
 let db = mongoose.connection;
 

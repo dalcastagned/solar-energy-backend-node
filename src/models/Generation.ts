@@ -12,7 +12,7 @@ const generationSchema = new Schema({
   _id: { type: String, required: true },
   date: { type: Date, required: true },
   generatePower: { type: Number, required: true },
-  plantId: { type: String, required: true },
+  plantId: { type: String, required: true, select: false },
 });
 
 generationSchema.plugin(paginate);

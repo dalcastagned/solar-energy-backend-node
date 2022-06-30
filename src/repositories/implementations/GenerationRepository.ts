@@ -20,7 +20,6 @@ export class GenerationRepository implements IGenerationRepository {
     const options = {
       page: page,
       limit: limit,
-      select: '_id date generatePower',
     };
 
     var plantIdRegExp = new RegExp(plantId, 'i');
@@ -41,7 +40,7 @@ export class GenerationRepository implements IGenerationRepository {
   }
 
   async getById(id: string): Promise<Generation> {
-    return GenerationModel.findById(id, '_id date generatePower');
+    return GenerationModel.findById(id);
   }
 
   async remove(id: string): Promise<void> {

@@ -1,15 +1,87 @@
-<h1 align="center">Bem-Vindo(a) ao projeto DevInHouse Solar Energy (EM DESENVOLVIMENTO) 👋</h1>
+<h1 align="center">Bem-Vindo(a) ao projeto DevInHouse Solar Energy 👋</h1>
 
 ## Descrição do Projeto
 
-<p align="left">API para CRUD de plantas solares e gerações. Criada para reforçar o aprendizado com a estrutura NodeJs.</p>
+<p align="left">API para CRUD de plantas solares e gerações. Criada para reforçar o aprendizado com a estrutura NodeJs e o frontend pode ser encontrado nesse link: <a href="https://github.com/dalcastagned/solar-energy-frontend">https://github.com/dalcastagned/solar-energy-frontend</a> 
+</p>
+
+## Instalação e Inicialização
+
+```sh
+docker-compose up --build
+```
+
+## Endpoints Plant
+
+```sh
+POST: localhost:7140/api/plant
+```
+
+```sh
+GET: localhost:7140/api/plant
+```
+
+```sh
+GET: localhost:7140/api/plant/id
+```
+
+```sh
+GET: localhost:7140/api/plant/counts
+```
+
+```sh
+DELETE: localhost:7140/api/plant/id
+```
+
+```sh
+PUT: localhost:7140/api/plant/id
+```
+
+## Endpoints Generations
+
+```sh
+POST: localhost:7140/api/plant/plantId/generation
+```
+
+```sh
+GET: localhost:7140/api/plant/plantId/generation
+```
+
+```sh
+GET: localhost:7140/api/plant/plantId/generation/generationId
+```
+
+```sh
+GET: localhost:7140/api/plant/generations-last-12-months
+```
+
+```sh
+DELETE: localhost:7140/api/plant/plantId/generation
+```
+
+```sh
+PUT: localhost:7140/api/plant/plantId/generation
+```
+
+## Endpoints User
+
+```sh
+POST: localhost:7140/api/user/signup
+```
+
+```sh
+POST: localhost:7140/api/user/login
+```
 
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
 - [NodeJs](https://nodejs.org/en/)
+- [Typescript](https://www.typescriptlang.org/)
 - [MongoDB](https://www.mongodb.com/pt-br)
+- [Mongoose](https://mongoosejs.com/)
+- [mongoose-paginate-v2](https://github.com/aravindnc/mongoose-paginate-v2)
 
 ## Autor
 

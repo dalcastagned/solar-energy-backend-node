@@ -4,7 +4,7 @@ import { generationRoutes } from './GenerationsRoutes';
 import { plantRoutes } from './PlantsRoutes';
 
 const routes = (app: Express) => {
-  app.use(express.json(), plantRoutes, generationRoutes);
+  app.use(express.json(), generationRoutes, plantRoutes);
 };
 
 export { routes };

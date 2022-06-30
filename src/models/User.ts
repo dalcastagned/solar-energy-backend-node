@@ -24,10 +24,6 @@ userSchema.set('toJSON', {
   },
 });
 
-userSchema.methods.matchPassword = async function (enteredPassword: string): Promise<boolean> {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
-
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();

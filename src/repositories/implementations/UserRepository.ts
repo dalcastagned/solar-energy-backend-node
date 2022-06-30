@@ -11,8 +11,4 @@ export class UserRepository implements IUserRepository {
     const newUser = new UserModel(user);
     return newUser.save();
   }
-
-  async login(email: string, password: string): Promise<User> {
-    return UserModel.findOne({ email, password });
-  }
 }

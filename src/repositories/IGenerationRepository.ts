@@ -4,7 +4,13 @@ import { GetGenerationsLast12MonthsDTO } from '../useCases/GetGenerationsLast12M
 
 export interface IGenerationRepository {
   create(generation: Generation): Promise<Generation>;
-  getAll(plantId: string, page: number, limit: number): Promise<GetAllGenerationsDTO>;
+  getAll(
+    plantId: string,
+    page: number,
+    limit: number,
+    startDate?: Date,
+    endDate?: Date,
+  ): Promise<GetAllGenerationsDTO>;
   getById(id: string): Promise<Generation>;
   remove(id: string): Promise<void>;
   update(generation: Generation): Promise<Generation>;

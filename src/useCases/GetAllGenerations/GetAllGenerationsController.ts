@@ -11,6 +11,8 @@ export class GetAllGenerationsController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const page = (request.query.page && parseInt(request.query.page.toString(), 10)) || 1;
     const limit = (request.query.limit && parseInt(request.query.limit.toString())) || 10;
+    const startDate = request.query.startDate && new Date(request.query.startDate.toString());
+    const endDate = request.query.endDate && new Date(request.query.endDate.toString());
     const plantId = request.params.plantId;
     const plant = await this.getPlantUseCase.execute(plantId);
 
@@ -20,7 +22,13 @@ export class GetAllGenerationsController {
       });
     }
     try {
-      const generations = await this.getAllGenerationsUseCase.execute(plantId, page, limit);
+      const generations = await this.getAllGenerationsUseCase.execute(
+        plantId,
+        page,
+        limit,
+        startDate,
+        endDate,
+      );
       return response.json(generations);
     } catch (error) {
       return response.status(400).json({

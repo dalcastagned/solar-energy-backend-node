@@ -12,7 +12,9 @@ export class GetAllGenerationsUseCase {
     plantId: string,
     page: number,
     limit: number,
+    startDate?: Date,
+    endDate?: Date,
   ): Promise<GetAllGenerationsDTO> {
-    return this.generationRepository.getAll(plantId, page, limit);
+    return this.generationRepository.getAll(plantId, page, limit, startDate, endDate);
   }
 }

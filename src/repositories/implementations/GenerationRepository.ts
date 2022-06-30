@@ -10,16 +10,27 @@ export class GenerationRepository implements IGenerationRepository {
     return newGeneration.save();
   }
 
-  async getAll(plantId: string, page: number, limit: number): Promise<GetAllGenerationsDTO> {
+  async getAll(
+    plantId: string,
+    page: number,
+    limit: number,
+    startDate?: Date,
+    endDate?: Date,
+  ): Promise<GetAllGenerationsDTO> {
     const options = {
       page: page,
       limit: limit,
       select: '_id date generatePower',
     };
+
     var plantIdRegExp = new RegExp(plantId, 'i');
     const generations = await GenerationModel.paginate(
       {
-        plantId: { $regex: plantIdRegExp },
+        $and: [
+          { plantId: { $regex: plantIdRegExp } },
+          startDate ? { date: { $gte: startDate } } : {},
+          endDate ? { date: { $lte: endDate } } : {},
+        ],
       },
       options,
       function (_, result) {
